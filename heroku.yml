@@ -6,4 +6,4 @@ services:
     container_name: example
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.Prod
