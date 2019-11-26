@@ -20,5 +20,14 @@ RUN npm install -g @angular/cli
 # add app
 COPY . /app
 
-# start app
-CMD ng serve --host 0.0.0.0
+
+# generate build
+RUN ng build --output-path=dist
+
+
+WORKDIR ./server
+
+# Build Webserver
+RUN npm install
+
+CMD ["node", "./bin/www"]
