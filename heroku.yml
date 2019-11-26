@@ -1,0 +1,9 @@
+version: '3.7'
+
+services:
+
+  example:
+    container_name: example
+    build:
+      context: .
+      dockerfile: Dockerfile
