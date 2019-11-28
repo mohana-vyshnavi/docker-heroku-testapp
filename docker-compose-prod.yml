@@ -3,9 +3,9 @@ version: '3.7'
 services:
 
   example-prod:
-    container_name: example-prod
+    container_name: vyshnavi999/dockerherokutestapp
     build:
       context: .
-      dockerfile: Dockerfile-prod
+      dockerfile: Dockerfile.Prod
     ports:
       - '80:80'
