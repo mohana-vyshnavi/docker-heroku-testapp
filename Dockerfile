@@ -1,33 +1,19 @@
-# base image
-FROM node:11.15.0
+# More information on heroku and docker: https://devcenter.heroku.com/articles/container-registry-and-runtime
+FROM node:carbon-alpine
 
-# install chrome for protractor tests
-RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
-RUN sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
-RUN apt-get update && apt-get install -yq google-chrome-stable
+WORKDIR /usr/app
+COPY . .
 
-# set working directory
-WORKDIR /app
-
-# add `/app/node_modules/.bin` to $PATH
-ENV PATH /app/node_modules/.bin:$PATH
-
-# install and cache app dependencies
-COPY package.json /app/package.json
+# Build Angular
+RUN apk update && apk upgrade && \
+    apk add --no-cache bash git openssh
 RUN npm install
-RUN npm install -g @angular/cli
-
-# add app
-COPY . /app
-
-
-# generate build
-RUN ng build --output-path=dist
-
+RUN npm run build
 
 WORKDIR ./server
 
 # Build Webserver
 RUN npm install
+RUN npm run build
 
 CMD ["node", "./bin/www"]
