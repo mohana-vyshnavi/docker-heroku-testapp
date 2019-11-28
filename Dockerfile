@@ -5,8 +5,7 @@ WORKDIR /usr/app
 COPY . .
 
 # Build Angular
-RUN apk update && apk upgrade && \
-    apk add --no-cache bash git openssh
+RUN npm install @angular/cli@8.2.13
 RUN npm install
 RUN npm run build
 

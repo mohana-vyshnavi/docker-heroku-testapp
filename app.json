@@ -1,0 +1,13 @@
+{
+    "name": "PLP-Mobile",
+    "scripts": {},
+    "env": {},
+    "formation": {},
+    "addons": [
+
+    ],
+    "buildpacks": [
+
+    ],
+    "stack": "container"
+}
